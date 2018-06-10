@@ -71,10 +71,31 @@ import javafx.util.StringConverter;
  */
 public class NegatronPreloader extends Preloader {
     
-    private static final Path NEGATRON_INI = Paths.get("./Negatron.ini");
+    private static final Path NEGATRON_INI;
     private static final PseudoClass ERROR_CLASS = PseudoClass.getPseudoClass("error");
     private static final String MAME = "MAME";
     private static final String MESS = "MESS";
+    
+    static {
+        Path root = Paths.get(".");
+        try {
+            if (!Files.isWritable(root)) {
+                String osName = System.getProperty("os.name").toLowerCase();
+                if (osName.contains("win"))
+                    root = Paths.get(System.getenv("AppData"), "Negatron");
+                else if (osName.startsWith("mac os x"))
+                    root = Paths.get(System.getProperty("user.home"), "Library", "Application Support", ".Negatron");
+                else // Linux
+                    root = Paths.get(System.getProperty("user.home"), ".Negatron");
+                if (Files.notExists(root))
+                    Files.createDirectory(root);
+            }   
+        } catch (IOException ex) {
+            Logger.getLogger(NegatronPreloader.class.getName()).log(Level.SEVERE, "Couldn't determine a path where to create Negatron.ini", ex);
+        } finally {
+            NEGATRON_INI = root.resolve("Negatron.ini");
+        }
+    }
     
     private static class Configuration {
         private final String mamePath;
