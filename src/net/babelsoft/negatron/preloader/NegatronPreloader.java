@@ -84,7 +84,7 @@ public class NegatronPreloader extends Preloader {
                 if (osName.contains("win"))
                     root = Paths.get(System.getenv("AppData"), "Negatron");
                 else if (osName.startsWith("mac os x"))
-                    root = Paths.get(System.getProperty("user.home"), "Library", "Application Support", ".Negatron");
+                    root = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "Negatron");
                 else // Linux
                     root = Paths.get(System.getProperty("user.home"), ".Negatron");
                 if (Files.notExists(root))
