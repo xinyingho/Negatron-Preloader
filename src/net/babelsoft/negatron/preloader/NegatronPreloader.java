@@ -139,15 +139,16 @@ public class NegatronPreloader extends Preloader {
         language = Language.Manager.getBundle();
         
         // Prerequisite check
-        float javaVersion = Float.parseFloat(System.getProperty("java.specification.version"));
+        float javaVersion = Float.parseFloat(System.getProperty("java.specification.version").replace("-ea", ""));
         String javaFxVersion = System.getProperty("javafx.version");
         if (javaVersion < 1.8f || javaFxVersion == null || javaFxVersion.trim().equals("")) {
-            AlertBox alert = AlertBox.showAndWait(String.format(language.getString("javaVersion.error"), javaVersion)
+            AlertBox alert = AlertBox.showAndWait(
+                String.format(language.getString("javaVersion.error"), javaVersion)
             );
             alert.dispose();
             throw new RuntimeException("You need to run Java 1.8+");
         }
-        String[] version = javaFxVersion.split("\\.");
+        String[] version = javaFxVersion.replace("-ea", "").split("\\.");
         int versionMajor = Integer.parseInt(version[0]);
         if (
             versionMajor < 8 ||
