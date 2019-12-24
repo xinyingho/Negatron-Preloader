@@ -1,6 +1,6 @@
 /*
  * This file is part of Negatron.
- * Copyright (C) 2015-2018 BabelSoft S.A.S.U.
+ * Copyright (C) 2015-2020 BabelSoft S.A.S.U.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,27 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.babelsoft.negatron.preloader;
+package net.babelsoft.negatron.preloader.spi;
 
-import java.util.ResourceBundle;
+import java.util.spi.ResourceBundleProvider;
 
 /**
  *
  * @author capan
  */
-public enum Language {
-    Manager;
-    
-    public final String ROOT_PATH = "theme/language";
-    public final String MASK = "preload.*\\.properties";
-    public final String FILE_PATH = ROOT_PATH + "/preload";
-    private final String RESOURCE_BUNDLE_SPI = "net.babelsoft.negatron.preloader.LanguageUi";
-    
-    public ResourceBundle getBundle() {
-        return ResourceBundle.getBundle(RESOURCE_BUNDLE_SPI);
-    }
-    
-    public String getString(String key) {
-        return getBundle().getString(key);
-    }
-}
+public interface LanguageUiProvider extends ResourceBundleProvider { }
