@@ -4,7 +4,7 @@
 
     <groupId>net.babelsoft</groupId>
     <artifactId>Negatron-Preloader</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.100</version>
     <packaging>jar</packaging>
 
     <name>Negatron-Preloader</name>
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <moduleName>negatron.preloader</moduleName>
         <mainClass>net.babelsoft.negatron.preloader.NegatronPreloader</mainClass>
-        <javafx.version>13.0.1</javafx.version>
+        <javafx.version>13.0.2</javafx.version>
     </properties>
 
     <organization>
