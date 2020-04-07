@@ -141,25 +141,12 @@ public class NegatronPreloader extends Preloader {
         // Prerequisite check
         float javaVersion = Float.parseFloat(System.getProperty("java.specification.version").replace("-ea", ""));
         String javaFxVersion = System.getProperty("javafx.version");
-        if (javaVersion < 1.8f || javaFxVersion == null || javaFxVersion.trim().equals("")) {
+        if (javaVersion < 11f || javaFxVersion == null || javaFxVersion.trim().equals("")) {
             AlertBox alert = AlertBox.showAndWait(
                 String.format(language.getString("javaVersion.error"), javaVersion)
             );
             alert.dispose();
-            throw new RuntimeException("You need to run Java 1.8+");
-        }
-        String[] version = javaFxVersion.replace("-ea", "").split("\\.");
-        int versionMajor = Integer.parseInt(version[0]);
-        if (
-            versionMajor < 8 ||
-            versionMajor == 8 &&
-            version.length > 1 && Integer.parseInt(version[1]) == 0 &&
-            version.length > 2 && Integer.parseInt(version[2]) < 60
-        ) {
-            AlertBox alert = AlertBox.showAndWait(String.format(language.getString("javaFxVersion.error"), javaFxVersion)
-            );
-            alert.dispose();
-            throw new RuntimeException("You need to run Java 8.0.60+");
+            throw new RuntimeException("You need to run Java 11+");
         }
         
         // for whatever reasons, maxMemory() doesn't return the real -Xmx value: with Java 8u66, on Windows 455MB instead of 512, on Linux 488MB instead of 512.
