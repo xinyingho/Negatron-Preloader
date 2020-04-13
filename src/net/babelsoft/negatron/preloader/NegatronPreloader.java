@@ -141,7 +141,7 @@ public class NegatronPreloader extends Preloader {
         // Prerequisite check
         float javaVersion = Float.parseFloat(System.getProperty("java.specification.version").replace("-ea", ""));
         String javaFxVersion = System.getProperty("javafx.version");
-        if (javaVersion < 11f || javaFxVersion == null || javaFxVersion.trim().equals("")) {
+        if (javaVersion < 11f || javaFxVersion == null || javaFxVersion.isBlank()) {
             AlertBox alert = AlertBox.showAndWait(
                 String.format(language.getString("javaVersion.error"), javaVersion)
             );
@@ -261,7 +261,7 @@ public class NegatronPreloader extends Preloader {
         mamePath.setPromptText(language.getString("mame.prompt"));
         mamePath.pseudoClassStateChanged(ERROR_CLASS, true);
         mamePath.textProperty().addListener((o, oV, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty())
+            if (newValue == null || newValue.isBlank())
                 mamePath.pseudoClassStateChanged(ERROR_CLASS, true);
             else
                 mamePath.pseudoClassStateChanged(ERROR_CLASS, false);
@@ -322,7 +322,7 @@ public class NegatronPreloader extends Preloader {
                 dc.setTitle("MESS EXTRAs");
             else
                 dc.setTitle("MAME EXTRAs");
-            if (!mamePath.getText().trim().isEmpty())
+            if (!mamePath.getText().isBlank())
                 dc.setInitialDirectory(Paths.get(mamePath.getText().trim()).getParent().toFile());
             else
                 dc.setInitialDirectory(new File("."));
@@ -337,9 +337,9 @@ public class NegatronPreloader extends Preloader {
             Control c = (Control) event.getSource();
             DirectoryChooser dc = new DirectoryChooser();
             dc.setTitle("MAME Multimedia");
-            if (!extrasPath.getText().trim().isEmpty())
+            if (!extrasPath.getText().isBlank())
                 dc.setInitialDirectory(Paths.get(extrasPath.getText().trim()).getParent().toFile());
-            else if (!mamePath.getText().trim().isEmpty())
+            else if (!mamePath.getText().isBlank())
                 dc.setInitialDirectory(Paths.get(mamePath.getText().trim()).getParent().toFile());
             else
                 dc.setInitialDirectory(new File("."));
@@ -432,7 +432,7 @@ public class NegatronPreloader extends Preloader {
         Node okButton = dialog.getDialogPane().lookupButton(ButtonType.OK);
         okButton.setDisable(true);
         mamePath.textProperty().addListener((o, oV, newValue) -> {
-            okButton.setDisable(newValue == null || newValue.trim().isEmpty());
+            okButton.setDisable(newValue == null || newValue.isBlank());
         });
         dialog.getDialogPane().setContent(grid);
 
