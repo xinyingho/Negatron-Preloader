@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <moduleName>negatron.preloader</moduleName>
         <mainClass>net.babelsoft.negatron.preloader.NegatronPreloader</mainClass>
-        <javafx.version>14</javafx.version>
+        <javafx.version>14.0.1</javafx.version>
     </properties>
 
     <organization>
