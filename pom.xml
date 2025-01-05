@@ -4,7 +4,7 @@
 
     <groupId>net.babelsoft</groupId>
     <artifactId>Negatron-Preloader</artifactId>
-    <version>0.100.1</version>
+    <version>1.0.0</version><!-- macOS forbids any versions using the pattern 0.x.x when building a dmg/pkg pack -->
     <packaging>jar</packaging>
 
     <name>Negatron-Preloader</name>
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <moduleName>negatron.preloader</moduleName>
         <mainClass>net.babelsoft.negatron.preloader.NegatronPreloader</mainClass>
-        <javafx.version>14.0.1</javafx.version>
+        <javafx.version>23.0.1</javafx.version>
     </properties>
 
     <organization>
@@ -57,16 +57,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>23</source>
+                    <target>23</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -87,7 +87,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.8.1</version>
                 <executions>
                     <execution>
                         <id>copy-libs</id>
@@ -123,7 +123,7 @@
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.RC1</version>
+                <version>1.2.2.Final</version>
                 <executions>
                     <execution>
                         <id>add-module-info-to-deps</id>
