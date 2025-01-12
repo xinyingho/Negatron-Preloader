@@ -63,6 +63,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import net.babelsoft.negatron.preloader.PathUtil.PathType;
 
 /**
  * Simple Preloader Using the ProgressBar Control
@@ -78,8 +79,9 @@ public class NegatronPreloader extends Preloader {
     
     static {
         Path root = Paths.get(".");
+        String exePath = System.getProperty("jpackage.app-path");
         try {
-            if (!Files.isWritable(root)) {
+            if (exePath != null || !Files.isWritable(root)) {
                 String osName = System.getProperty("os.name").toLowerCase();
                 if (osName.contains("win"))
                     root = Paths.get(System.getenv("AppData"), "Negatron");
@@ -350,8 +352,8 @@ public class NegatronPreloader extends Preloader {
         
         // Initialise language controls
         languageChoice.getItems().add(Locale.UK);
-        Path path = Paths.get(Language.Manager.ROOT_PATH);
-        if (Files.exists(path)) try {
+        Path path = PathUtil.retrieveFromJavaLibraryPaths(PathType.FOLDER, Language.Manager.ROOT_PATH);
+        if (path != null) try {
             Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
 
                 @Override
