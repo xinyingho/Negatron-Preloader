@@ -52,8 +52,6 @@ public final class PathUtil {
         String libraryPath = System.getProperty("java.library.path");
         if (libraryPath != null)
             rootFolders.addAll( Arrays.asList(libraryPath.split(File.pathSeparator)) );
-        System.out.println("working dir: " + Paths.get("").toAbsolutePath());
-        System.out.println("java libs: " + libraryPath);
 
         // Search for the first valid path over all those root folders
         final Optional<Path> opath = rootFolders.stream().map(
